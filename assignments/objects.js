@@ -87,35 +87,41 @@ console.log(antonietta.multiplyNums(3,4));
 // 4. Give each of the objects the ability to speak their names using the this keyword.
 
 const parent = {
-  "name": "Susan",
-  "age": 70,
-  speak: () => {
-    console.log(`Hello, my name is ${this.name!}`)
-  },
-  "child": {
-    "name": "George",
-    "age": 50,
-    speak: () => {
-      console.log(`Hello, my name is ${this.name!}`)
-    },
-    "grandchild": {
-      "name": "Sam",
-      "age": 30,
-      speak: () => {
-        console.log(`Hello, my name is ${this.name!}`)
-      }
+  name: "Susan",
+  age: 70,
+  // speak: function() {return `Hello, my name is ${this.name!}`}
+  child: {
+    name: "George",
+    age: 50,
+    // speak: function() {return `Hello, my name is ${this.name!}`}
+    grandchild: {
+      name: "Sam",
+      age: 30,
+    //   speak: function() {return `Hello, my name is ${this.name!}`}
+    // }
     }
   }
 }
 
 // Log the parent object's name
-console.log(parent.name);
+console.log(parent.name)
 // Log the child's age
-console.log()
+console.log(parent.child.age)
 // Log the name and age of the grandchild
-console.log()
+console.log(parent.child.grandchild.name, parent.child.grandchild.age)
 // Have the parent speak
+parent.speak = function() {
+  return `Hello, my name is ${this.name}`
+}
+console.log(parent.speak())
 
 // Have the child speak
-
+parent.child.speak = function() {
+  return `Hello, my name is ${this.name}`
+}
+console.log(parent.child.speak())
 // Have the grandchild speak
+parent.child.grandchild.speak = function() {
+  return `Hello, my name is ${this.name}`
+}
+console.log(parent.child.grandchild.speak())
